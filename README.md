@@ -1,5 +1,5 @@
 # Seedloaf MC Server Starter
-Selenium script to start/stop your Seedloaf Minecraft server using GitHub Actions. Everthing's Online!
+Selenium script to automatically start/stop your Seedloaf Minecraft server using GitHub Actions
 
 **⏱️ Setup Time:** 5-10 minutes
 
@@ -9,6 +9,29 @@ If you created your Seedloaf account through Discord (not email), you need to do
 2. Unlink Discord from your account
 3. Change your password in the security tab
 4. You can re-link Discord after this
+
+---
+
+## Contents
+- [Choose Your Setup Method](#choose-your-setup-method)
+  - [🤖 Option A: For the Discord Bot users](#-option-a-for-the-discord-bot-users)
+  - [👥 Option B: For Github users](#-option-b-for-github-users)
+- [Setup for Discord Bot](#setup-for-discord-bot)
+  - [Step 1: Fork This Repository](#step-1-fork-this-repository)
+  - [Step 2: Enable GitHub Actions](#step-2-enable-github-actions)
+  - [Step 3: Add Your Seedloaf Credentials as Secrets](#step-3-add-your-seedloaf-credentials-as-secrets)
+  - [Step 4: Create a Personal Access Token](#step-4-create-a-personal-access-token)
+  - [Step 5: Connect the Bot to Your Repository](#step-5-connect-the-bot-to-your-repository)
+- [Manual Setup](#manual-setup)
+  - [Step 1: Fork This Repository](#step-1-fork-this-repository-1)
+  - [Step 2: Enable GitHub Actions](#step-2-enable-github-actions-1)
+  - [Step 3: Add Your Seedloaf Credentials as Secrets](#step-3-add-your-seedloaf-credentials-as-secrets-1)
+  - [Step 4: Test That It Works](#step-4-test-that-it-works)
+  - [Step 5: Add Your Friends as Collaborators](#step-5-add-your-friends-as-collaborators)
+  - [Step 6: Protect Your Code from Changes](#step-6-protect-your-code-from-changes)
+- [How to Run the Workflow](#how-to-run-the-workflow)
+- [Common Problems](#common-problems)
+- [How It Works](#how-it-works)
 
 ---
 
@@ -32,7 +55,7 @@ This thing can be used in two ways. Choose the setup flow you want:
 
 ---
 
-## Discord Bot Setup
+## Setup for Discord Bot
 
 The Discord bot triggers this GitHub thing for you.
 
@@ -54,17 +77,20 @@ Go to the **Actions** tab in your forked repository and enable it
 
 **Secrets** are hidden that only this github thing can see. Nobody (not even you after saving them) can view them.
 
-1. Go to **Settings** → **Secrets and variables** → **Actions** → **Repository secrets**
-2. Click **New repository secret**
-3. Create two secrets like that:
-   - Name: `USERNAME` | Value: Your Seedloaf email
-   - Name: `PASSWORD` | Value: Your Seedloaf password
 
 ![repo_secrets1](https://github.com/dibope/mcserverstarter/blob/main/.github/workflows/Images/repo_secrets1.jpg)
 
+1. Go to **Settings** → **Secrets and variables** → **Actions** → **Repository secrets**
+2. Click **New repository secret**
+3. Create two secrets like that:
+   - Name: `USERNAME` | Value: Your Seedloaf **Email**
+   - Name: `PASSWORD` | Value: Your Seedloaf **Password**
+4. Try to start server. 
+See the [Instructions.md](https://github.com/dibope/mcserverstarter/blob/main/Instructions.md) file for a detailed visual guide.
+
 > **Note:** These credentials are completely private and secure. GitHub encrypts them and they cannot be viewed by anyone after you save them.
 
-### Step 4: Create a Personal Access Token (For the Bot)
+### Step 4: Create a Personal Access Token
 
 The Discord bot needs permission to trigger workflows in YOUR forked repository. To give it access, you need to create a special key called a "token".
 
@@ -80,16 +106,18 @@ The Discord bot needs permission to trigger workflows in YOUR forked repository.
 - **Permissions:** Set these two permissions ONLY:
   - **Actions:** Read and Write
   - **Workflows:** Read and Write
+    
+>  Copy the token immediately - you can't see it again! (you can reset the token tough)
 
-⚠️ **CRITICAL:** Do NOT give "Contents" permission or any other permissions! This would let the anyone with token edit your fork. So check if these are the final permissions
+> [!WARNING]
+> Do NOT give **Contents** permission or any other permissions except the mentioned ones! This would let the anyone with token edit your fork. So check if these are the final permissions
 
 ![image](https://github.com/user-attachments/assets/763a4470-551a-4489-82cb-a5625eaa36b1)
 
 ![PAT1](https://github.com/dibope/workflowtrigger_bot/blob/main/PAT1.jpg)
 ![PAT2](https://github.com/dibope/workflowtrigger_bot/blob/main/PAT2.jpg)
 
-5. Click **Generate token**
-6. **IMPORTANT:** Copy the token immediately - you can't see it again!
+
 
 ### Step 5: Connect the Bot to Your Repository
 
@@ -97,7 +125,7 @@ Now you need to give the token to the Discord bot. For instructions on how to do
 
 [**Invite the Discord Bot**](https://discord.com/oauth2/authorize?client_id=1365006964001738993)
 
-✅ **You're done with Discord Bot setup!** Use `/help` in Discord to see available commands.
+✅ **You're done with Github setup Discord Bot!**
 
 ---
 
@@ -132,7 +160,8 @@ GitHub Actions (the automation) is disabled by default in forked repositories.
 
 ![repo_secrets1](https://github.com/dibope/mcserverstarter/blob/main/.github/workflows/Images/repo_secrets1.jpg)
 
-> **Note:** These credentials are completely private and secure. GitHub encrypts them and they cannot be viewed by anyone after you save them.
+> [!NOTE]
+> These credentials are completely private and secure. GitHub encrypts them and they cannot be viewed by anyone after you save them.
 
 ### Step 4: Test That It Works
 
@@ -185,10 +214,11 @@ See the [Instructions.md](https://github.com/dibope/mcserverstarter/blob/main/In
 **Quick version:**
 1. Go to **Actions** tab
 2. Click **Run Selenium Script**
-3. Click **Run workflow** → **Run workflow**
+3. Click **Run workflow** → **Run workflow** again
 4. To stop the server: Use the dropdown and change "start or stop" to `false`
+5. To store login session : set it to `true'
 
-**⏱️ How long does it take?** The server typically starts within 30-60 seconds after the workflow completes.
+**⏱️ How long does it take?** The server typically starts within 40-60 seconds after the workflow completes. Faster if you use session (enabled in discord or while runnning the wrokflow from github)
 
 ---
 
@@ -199,7 +229,7 @@ See the [Instructions.md](https://github.com/dibope/mcserverstarter/blob/main/In
 
 ![image](https://github.com/user-attachments/assets/f0f136c6-83b9-4469-b503-1577447a9c15)
 
-### 4. Check logs
+### 2. Check logs
 ✅ **Fix:** Check the workflow logs for error messages:
 1. Go to **Actions** tab
 2. Click on your failed workflow run
@@ -209,7 +239,7 @@ See the [Instructions.md](https://github.com/dibope/mcserverstarter/blob/main/In
 ![image](https://github.com/user-attachments/assets/b29081d0-19ab-43d9-8316-5598566a15e1)
 ![image](https://github.com/user-attachments/assets/d7cc5fcb-01d7-47d7-ac26-f2b2dd96e715)
 
-### 5. Discord Account Login Issue (Important!)
+### 3. Discord Account Login Issue (Important!)
 If you created your Seedloaf account through Discord, the automation won't work even if you added a email and password later.
 
 ✅ **Fix:**
@@ -220,13 +250,13 @@ If you created your Seedloaf account through Discord, the automation won't work 
 5. Now you can re-link Discord if you want
 
 This is required because Seedloaf treats Discord-only accounts differently from email accounts.
-### 2. "Password incorrect" or "Username incorrect" error
+### 4. "Password incorrect" or "Username incorrect" error
 ✅ **Fix:** Check your repository secrets:
 1. Go to **Settings** → **Secrets and variables** → **Actions**
 2. Delete and recreate the `USERNAME` and `PASSWORD` secrets
 3. Make sure there are no extra spaces when pasting
 
-### 3. Workflow shows "Already logged in" but server doesn't start
+### 5. Workflow shows "Already logged in" but server doesn't start
 ✅ **Fix:** The session cache might be stale.
 1. Run the workflow again or delete the session cache in **Actions** tab
 
@@ -238,22 +268,14 @@ If nothing else works, try using the older version:
 2. Rename `selenium.yml` to `selenium_new.yml`
 3. Rename `selenium_working.yml` to `selenium.yml`
 4. Commit the changes
-
+- Still stuck? Open an Issue in this repository
 - my discord `dibope5834_95850`
 ---
 
 ## How It Works
 
 1. It installs **Chrome browser** and **Python**
-2. The **Selenium script** opens Chrome, goes to Seedloaf, logs in with your credentials, optionally saves login session if you enable in discord
-4. It clicks the Start/Stop button automatically and closes
+2. The **Selenium script** opens Chrome, goes to Seedloaf, logs in with your credentials, optionally saves login session if you enable in discord or github
+4. It clicks the Start/Stop button and closes
 
----
-
-## Support
-
-- Having issues? Check [Common Problems](#common-problems) first
-- Still stuck? Open an Issue in this repository
-- For Discord bot help, use the `/help` command in Discord
-- my discord `dibope5834_95850`
 ---
